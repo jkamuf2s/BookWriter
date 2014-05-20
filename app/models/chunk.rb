@@ -17,6 +17,8 @@ class Chunk < ActiveRecord::Base
   validates :title, :uniqueness => {:scope => :book_id}
   validates :position, :uniqueness => {:scope => :book_id}
   validate :handle_conflict, only: :update
+  validates_format_of :section, :with => /^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})|[a-zA-Z].\d+|\d+(\.\d+)*)$/, :on => :create, :message => "not a valid section format: Use digits segregated with dots ( eg. 1.2.3 ), a single character and digits segregated with dots ( eg A.13 ) or roman format ( eg. IV)"
+  validates_format_of :section, :with => /^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})|[a-zA-Z].\d+|\d+(\.\d+)*)$/, :on => :update, :message => "not a valid section format: Use digits segregated with dots ( eg. 1.2.3 ), a single character and digits segregated with dots ( eg A.13 ) or roman format ( eg. IV)"
 
   def username
     user.username
