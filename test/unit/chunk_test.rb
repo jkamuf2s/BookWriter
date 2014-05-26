@@ -10,4 +10,15 @@ class ChunkTest < ActiveSupport::TestCase
   end
 
 
+  test 'chunk_section_validates_format_of' do
+    chunk = Chunk.new
+
+    assert !chunk.save
+
+    chunk.section = "sdf"
+
+
+  end
+
+
 end
