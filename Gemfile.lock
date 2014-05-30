@@ -22,6 +22,8 @@ GEM
       activesupport (= 3.2.17)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-sqlserver-adapter (3.2.12)
+      activerecord (~> 3.2.0)
     activeresource (3.2.17)
       activemodel (= 3.2.17)
       activesupport (= 3.2.17)
@@ -119,6 +121,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
+    tiny_tds (0.6.1-x86-mingw32)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -136,6 +139,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  activerecord-sqlserver-adapter
   ckeditor
   coffee-rails (~> 3.2.1)
   devise
@@ -149,6 +153,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer
+  tiny_tds
   uglifier (>= 1.0.3)
   wicked_pdf
   wkhtmltopdf-binary

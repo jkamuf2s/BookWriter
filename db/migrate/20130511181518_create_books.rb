@@ -5,7 +5,7 @@ class CreateBooks < ActiveRecord::Migration
       t.integer :edition
       t.date :published
       t.string :genre
-      t.string :abstract
+      t.text :abstract
       t.string :tags
 
       t.timestamps
