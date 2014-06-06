@@ -49,3 +49,4 @@ gem 'wkhtmltopdf-binary' # PDF-Generierung aus HTML-Daten
 gem 'wicked_pdf' # PDF-Export
 gem 'activerecord-sqlserver-adapter'
 gem 'tiny_tds'
+gem 'recaptcha', :require => 'recaptcha/rails'

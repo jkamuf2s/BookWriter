@@ -5,7 +5,9 @@ BookWriter::Application.routes.draw do
   # Startseite der Applikation
   root :to => 'books#index'
 
-  devise_for :users
+  #devise_for :users #default devise route without recaptcha
+
+  devise_for :users, :controllers => {:registrations => "registrations"} # route to custom controller for recaptcha verification
 
   resources :books do
     get 'print', :on => :member
