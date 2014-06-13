@@ -3,12 +3,12 @@ class BooksController < ApplicationController
   layout 'books_and_chunks'
   before_filter :authenticate_user!
   before_filter :find_all_users, :only => [:new, :edit, :new_edition]
+  helper_method :sort_column, :sort_direction
 
   # GET /books
   # GET /books.json
   def index
-    @books = current_user.books
-
+    @books = Book.joins(:users).where("users.id" => current_user.id).order(sort_column + " " + sort_direction);
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
@@ -159,6 +159,14 @@ class BooksController < ApplicationController
   private
   def find_all_users
     @users = User.all
+  end
+
+  def sort_column
+    Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

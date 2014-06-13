@@ -1,11 +1,11 @@
 <h1><%= t 'views.book.index.title' %></h1>
 
-<table>
+<table class="pretty">
   <tr>
-    <th><%= Book.human_attribute_name(:title) %></th>
-    <th><%= Book.human_attribute_name(:edition) %></th>
-    <th><%= Book.human_attribute_name(:published) %></th>
-    <th><%= Book.human_attribute_name(:genre) %></th>
+    <th><%= sortable "title", Book.human_attribute_name(:title) %></th>
+    <th><%= sortable "edition", Book.human_attribute_name(:edition) %></th>
+    <th><%= sortable "published", Book.human_attribute_name(:published) %></th>
+    <th><%= sortable "genre", Book.human_attribute_name(:genre) %></th>
     <th><%= Book.human_attribute_name(:tags) %></th>
     <th><%= Book.human_attribute_name(:users) %></th>
   </tr>
