@@ -10,6 +10,14 @@ class Book < ActiveRecord::Base
 
   before_destroy :destroy_chunks
 
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   def sliced_attributes
     attributes.slice('title', 'genre', 'abstract', 'tags')
   end
@@ -34,11 +42,15 @@ class Book < ActiveRecord::Base
     users.collect { |u| u.first_name + ' ' + u.last_name }.join(',')
   end
 
+
+
   private
   def destroy_chunks
     chunks.each do |chunk|
       chunk.destroy
     end
   end
+
+
 
 end

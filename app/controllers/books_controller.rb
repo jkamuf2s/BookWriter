@@ -8,7 +8,8 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.joins(:users).where("users.id" => current_user.id).order(sort_column + " " + sort_direction);
+    @books = Book.search(params[:search]).joins(:users).where("users.id" => current_user.id).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page]);
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
