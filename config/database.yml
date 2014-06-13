@@ -4,16 +4,16 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-#  adapter: sqlserver
-#  username: 'sa'
-#  password: 'jaysql'
-#  dataserver: 'mpu-kamuf.de:50021\hajujoSQLServer'
-#  database: 'BookWriterDevelopment_DB'
+  adapter: sqlserver
+  username: 'sa'
+  password: 'jaysql'
+  dataserver: 'mpu-kamuf.de:50021\hajujoSQLServer'
+  database: 'BookWriterDevelopment_DB'
 
-    adapter: sqlite3
-    database: db/development.sqlite3
-    pool: 5
-    timeout: 5000
+#    adapter: sqlite3
+#    database: db/development.sqlite3
+#    pool: 5
+#    timeout: 5000
 
 
 # Warning: The database defined as "test" will be erased and
