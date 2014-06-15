@@ -119,6 +119,7 @@ de:
       too_long: ist zu lang (mehr als %{count} Zeichen)
       too_short: ist zu kurz (weniger als %{count} Zeichen)
       wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
+      no_autor_selectet: Es muss mindestens ein Autor ausgewählt werden
     template:
       body: ! 'Bitte überprüfen Sie die folgenden Felder:'
       header:
