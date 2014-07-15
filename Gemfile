@@ -51,3 +51,4 @@ gem 'activerecord-sqlserver-adapter'
 gem 'tiny_tds'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate', '~> 3.0.5' # For Pagination in Table
+gem 'rails-footnotes', '>= 4.0.0', '<5', :group => :development
