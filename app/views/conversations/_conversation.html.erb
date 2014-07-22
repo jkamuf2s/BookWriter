@@ -3,7 +3,7 @@
       <table>
           <tr>
             <td><%= link_to conversation.subject, conversation %></td>
-
+            <td>(<%= render :partial => "participant", :collection => conversation.participants %>)</td>
             <td><% numberOfUnreadMessages = number_of_unreadMessages(conversation) %>
                 <% if(numberOfUnreadMessages > 1) %> <!-- HelperMethod defined in helpers/conversations_helper -->
                    (<%= numberOfUnreadMessages %> Messages unread)
