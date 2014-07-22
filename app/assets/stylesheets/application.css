@@ -11,6 +11,10 @@
  *= require_self
  *= require_tree .
  */
+.topclass img{
+    width: 20px;
+    height: 20px;
+}
 
 .pretty th .current {
     padding-right: 12px;

@@ -1,0 +1,18 @@
+<%= content_tag_for(:li, conversation) do |conversation| %>
+    <p>
+      <table>
+          <tr>
+            <td><%= link_to conversation.subject, conversation %></td>
+
+            <td><% numberOfUnreadMessages = number_of_unreadMessages(conversation) %>
+                <% if(numberOfUnreadMessages > 1) %> <!-- HelperMethod defined in helpers/conversations_helper -->
+                   (<%= numberOfUnreadMessages %> Messages unread)
+                <% elsif (numberOfUnreadMessages == 1) %>
+                    (<%= numberOfUnreadMessages %> Message unread)
+                <% end %>
+            </td>
+            <td><%= link_to I18n.t('views.destroy'), trash_conversation_path(conversation), method: :post, data: {confirm: I18n.t('views.are_you_sure')} %></td>
+          </tr>
+      </table>
+    </p>
+<% end %>

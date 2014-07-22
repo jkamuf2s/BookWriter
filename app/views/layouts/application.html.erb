@@ -15,6 +15,7 @@
 
     <% if user_signed_in? %>
         <%= link_to I18n.t('views.layout.home'), books_path %> |
+        <%= link_to image_tag('message.png'), conversations_path, :class => 'topclass' %> |
         <%= "#{I18n.t('views.layout.account')}: #{current_user.username}" %> |
         <%= link_to I18n.t('views.layout.my_account'), edit_user_registration_path %> |
         <%= link_to I18n.t('views.layout.logout'), destroy_user_session_path, method: :delete %>

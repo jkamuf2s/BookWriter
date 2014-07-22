@@ -1,0 +1,8 @@
+<%= simple_form_for :message, url: [:reply, @conversation] do |f| %> <!-- reply action in conversations controller -->
+    <%= f.input :subject, :input_html => { :value => "RE: #{@conversation.subject}"} %>
+    <%= f.input :body %>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-primary' %>
+      <%= submit_tag 'Reset', type: :reset, class: 'btn btn-danger' %>
+    </div>
+<% end %>

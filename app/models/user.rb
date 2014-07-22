@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable
 
+  acts_as_messageable
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
@@ -25,6 +27,11 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  # username as Indentification for Mailboxer
+  def name # method_name depends on definition in /config/initializers/mailboxer.rb
+    username
   end
 
 end

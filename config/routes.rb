@@ -1,5 +1,7 @@
 BookWriter::Application.routes.draw do
 
+  get "conversations/index"
+
   mount Ckeditor::Engine => '/ckeditor'
 
   # Startseite der Applikation
@@ -15,6 +17,18 @@ BookWriter::Application.routes.draw do
     get 'new_edition', :on => :member
     resources :chunks, :except => [:index]
   end
+
+  # Routes for Mailboxer
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      post :trash
+    end
+  end
+
+  # Required, because some forms, which are working with conversations claim it
+  get 'conversations/:id' => "conversations#show", :as => :mailboxer_conversation # generates  mailboxer_conversation_path
+  post '/conversations/:id/reply' => "conversations#reply", :as => :reply_mailboxer_conversation # generates  reply_mailboxer_conversation_path
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

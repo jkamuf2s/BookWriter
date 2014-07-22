@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ConversationsHelper
 
   def user_books
     current_user.books

@@ -1,0 +1,23 @@
+<h1>
+  <%= @conversation.subject %>
+</h1>
+<ul>
+  <%= content_tag_for(:li, @conversation.receipts_for(current_user)) do |receipt| %>
+      <% message = receipt.message %>
+      <h3>
+        <%= "Subject: #{message.subject}" %>
+        <% if !receipt.is_read? %>
+            NEW!
+        <% end %>
+      </h3>
+      <h4>
+        <%= "From: #{message.sender.username} Time: #{receipt.created_at.strftime("%a, %m/%e/%Y %I:%M %p")}" %>
+      </h4>
+      <p>
+        <%= message.body %>
+      </p>
+  <% end %>
+</ul>
+<%= render 'messages/form', conversation: @conversation %>
+<%= button_to I18n.t('views.back'), :back, method: :get %>
+
