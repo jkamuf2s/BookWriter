@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   after_filter :read_conversation, :only => [:show] # mark all conversation-Messages as Read
   helper :conversations
-  helper_method :mailbox
+  helper_method :mailbox, :conversation
 
   # /conversations
   def index
@@ -23,6 +23,7 @@ class ConversationsController < ApplicationController
     redirect_to conversation
   end
 
+  # /conversations/:id
   def show
     @conversation ||= conversation
     respond_to do |format|
