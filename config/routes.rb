@@ -1,5 +1,7 @@
 BookWriter::Application.routes.draw do
 
+  resources :booksearches
+
   get "conversations/index"
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -17,6 +19,9 @@ BookWriter::Application.routes.draw do
     get 'new_edition', :on => :member
     resources :chunks, :except => [:index]
   end
+
+  get 'show_simple_searchform' => 'books#show_simple_searchform' # for javascript
+  get 'show_advanced_searchform' => 'books#show_advanced_searchform' # for javascript
 
   # Routes for Mailboxer
   resources :conversations, only: [:index, :show, :new, :create] do

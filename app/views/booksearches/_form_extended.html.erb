@@ -1,0 +1,62 @@
+<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' }, remote: true do |f| %>
+  <%= f.hidden_field :is_advanced, :value => '1' %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <table>
+    <tr>
+      <td>
+        <%= f.label :title %><br />
+      </td>
+      <td>
+        <%= f.text_field :title %>
+      </td>
+      <td>
+        <%= f.label :is_published %>
+      </td>
+      <td>
+        <%= f.check_box :is_published %>
+        <%= f.label :is_public, 'not only my books' %>
+        <%= f.check_box :is_public %>
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :genre %><br />
+      </td>
+      <td>
+        <%= f.collection_select :genre, Book.select('distinct genre'), :genre, :genre, {:selected => @booksearch.genre, :include_blank => true} %>
+      </td>
+      <td>
+        <%= f.label :publishdate_to, 'between'%>
+      </td>
+      <td>
+        <% syear =  @booksearch.publishdate_from.to_i||2014 %>
+        <%= select_year(syear, :start_year => 2010, :end_year => Time.now.year, :field_name => "publishdate_to", :prefix => "booksearch") %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :author %><br />
+      </td>
+      <td>
+        <%= f.text_field :author %>
+      </td>
+      <td>
+        <%= f.label :publishdate_from, 'and' %>
+      </td>
+      <td>
+        <% syear =  @booksearch.publishdate_to.to_i||2010 %>
+        <%= select_year(syear, :start_year => Time.now.year, :end_year => 2010, :field_name => "publishdate_from", :prefix => "booksearch") %>
+      </td>
+    </tr>
+  </table>
+  <%= f.submit "Search" %>
+<% end %>
+
+

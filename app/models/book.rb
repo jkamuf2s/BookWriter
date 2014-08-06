@@ -10,20 +10,16 @@ class Book < ActiveRecord::Base
   validate :at_least_one_user_ids_selected
   before_destroy :destroy_chunks
 
-  def self.search(search)
-    if search
-      where('title LIKE ?', "%#{search}%")
-    else
-      scoped
-    end
-  end
-
   def sliced_attributes
     attributes.slice('title', 'genre', 'abstract', 'tags')
   end
 
   def published?
     !published.nil?
+  end
+
+  def is_author?(author)
+    self.users.map(&:id).include?(author.id)
   end
 
   def has_chunks?
@@ -48,6 +44,7 @@ class Book < ActiveRecord::Base
       chunk.destroy
     end
   end
+
 
   #TODO add german error message and highlight the checkboxes and email fields
   def at_least_one_user_ids_selected

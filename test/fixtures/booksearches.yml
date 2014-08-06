@@ -1,0 +1,19 @@
+one:
+  is_advanced: false
+  is_public: false
+  title: MyString
+  author: MyString
+  genre: MyString
+  is_published: false
+  publishdate_from: 2014-08-02
+  publishdate_to: 2014-08-02
+
+two:
+  is_advanced: false
+  is_public: false
+  title: MyString
+  author: MyString
+  genre: MyString
+  is_published: false
+  publishdate_from: 2014-08-02
+  publishdate_to: 2014-08-02

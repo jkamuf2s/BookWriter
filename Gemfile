@@ -20,7 +20,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails' # jquery
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -38,6 +38,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 # BookWriter Gems
+gem "nifty-generators", :group => :development # advanced scaffold generator
 gem 'rails-i18n' # Internationalisierung für rails
 gem 'devise' # Benutzermanagement
 gem 'devise-i18n' # Internationalisierung für devise
@@ -55,3 +56,5 @@ gem 'rails-footnotes', '>= 4.0.0', '<5', :group => :development
 
 gem 'mailboxer' # User Message-Communication
 gem 'simple_form' # easier form's creation
+
+gem "mocha", :group => :test

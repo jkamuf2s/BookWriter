@@ -1,13 +1,12 @@
 <h1><%= t 'views.book.index.title' %></h1>
-
-<%= form_tag books_path, :method => 'get' do %>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
-    <p>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :title => nil %>
-    </p>
-<% end %>
+<!-- simple or extended search  -->
+<%= link_to 'Simple Search', show_simple_searchform_path, :remote=> true %>
+<%= link_to 'Advanced Search', show_advanced_searchform_path, :remote=> true %>
+<br>
+<div id="searchform">
+  <%= render 'booksearches/form_simple' unless @booksearch.is_advanced? %>
+  <%= render 'booksearches/form_extended' if @booksearch.is_advanced? %>
+</div>
 
 <table class="pretty">
   <tr>
@@ -21,7 +20,7 @@
 
   <% @books.each do |book| %>
       <tr>
-        <td><%= link_to book.title, book %></td>
+        <td><%= book.is_author?(current_user) ? link_to(book.title, book) : book.title %></td>
         <td><%= book.edition %></td>
         <td><%= book.published %></td>
         <td><%= book.genre %></td>

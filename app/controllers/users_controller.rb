@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # _form_extended.html.erb
       format.json { render json: @user }
     end
   end

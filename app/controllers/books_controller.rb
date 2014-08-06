@@ -3,12 +3,16 @@ class BooksController < ApplicationController
   layout 'books_and_chunks'
   before_filter :authenticate_user!
   before_filter :find_all_users, :only => [:new, :edit, :new_edition]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :search_is_for_published
+
+
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.search(params[:search]).joins(:users).where("users.id" => current_user.id).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page]);
+    #@books = Book.search(params[:search]).joins(:users).where("users.id" => current_user.id).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page]);
+    @booksearch = booksearch
+    @books = @booksearch.search.paginate(:per_page => 3, :page => params[:page]); #searchresults.order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page]);
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +48,7 @@ class BooksController < ApplicationController
     @book = Book.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # index.html.erb
       format.json { render json: @book }
     end
   end
@@ -157,17 +161,51 @@ class BooksController < ApplicationController
     end
   end
 
+
+  def show_simple_searchform
+    @booksearch = booksearch
+    respond_to do |format| #
+      format.js # show_simple_searchform.js.erb
+    end
+  end
+
+  def show_advanced_searchform
+    @booksearch = booksearch
+    respond_to do |format| #
+      format.js # show_advanced_searchform.js.erb
+    end
+  end
+
+  def is_published_click
+    respond_to do |format| #
+      format.js # is_published_click.js.erb
+    end
+  end
+
   private
   def find_all_users
     @users = User.all
   end
 
   def sort_column
-    Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    Book.column_names.include?(params[:sort]) ? params[:sort] : "title" # has params[:sort] included one of the column names?
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc" # has params[:direction] included one of "asc" or "dsc"
+  end
+
+  # Methods for Search
+  def booksearch
+    params[:booksearch]== nil ? Booksearch.new(:is_advanced => '0', :is_public => '0', :user_id => current_user.id) : Booksearch.new(params[:booksearch])
+  end
+
+  def search_is_public
+    booksearch.is_public == '1'
+  end
+
+  def search_is_advanced
+    booksearch.is_advanced == '1'
   end
 
 end
