@@ -46,7 +46,7 @@ class Book < ActiveRecord::Base
   end
 
 
-  #TODO add german error message and highlight the checkboxes and email fields
+  #TODOJK add german error message and highlight the checkboxes and email fields
   def at_least_one_user_ids_selected
     if self.user_ids.blank?
       self.errors.add(:user_ids, "no_autor_selectet")

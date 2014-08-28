@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20140718113515) do
     t.integer  "edition"
     t.date     "published"
     t.string   "genre"
-    t.string   "abstract"
+    t.text     "abstract"
     t.string   "tags"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
