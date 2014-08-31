@@ -42,7 +42,7 @@
         <%= f.label :author %><br />
       </td>
       <td>
-        <%= f.text_field :author %>
+        <%= f.text_field :author, :disabled => !@booksearch.is_public?%>
       </td>
       <td>
         <%= f.label :publishdate_to, 'and' %>
