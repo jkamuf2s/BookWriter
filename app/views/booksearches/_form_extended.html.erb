@@ -1,4 +1,5 @@
-<% javascript_include_tag('application') %>
+<%= javascript_include_tag('books.js') %>
+
 <%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' } do |f| %>
   <%= f.hidden_field :is_advanced, :value => '1' %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -15,9 +16,9 @@
         <%= f.label :is_published %>
       </td>
       <td>
-        <%= f.check_box :is_published, data: {remote: true} %>
+        <%= f.check_box :is_published, data: {published: true}, :checked => @booksearch.is_for_published_books? %>
         <%= f.label :is_public, 'not only my books' %>
-        <%= f.check_box :is_public %>
+        <%= f.check_box :is_public, data: {publicsearch: true}, :checked => @booksearch.is_public? %>
       </td>
       <td></td><td></td>
     </tr>
@@ -48,7 +49,7 @@
       </td>
       <td>
         <% syear =  @booksearch.publishdate_to.to_i||2010 %>
-        <%= select_year(syear, :start_year => Time.now.year, :end_year => 2010, :field_name => "publishdate_from", :prefix => "booksearch", :disabled => !@booksearch.is_for_published_books?) %>
+        <%= select_year(syear, :start_year => Time.now.year, :end_year => 2010, :field_name => "publishdate_to", :prefix => "booksearch", :disabled => !@booksearch.is_for_published_books?) %>
       </td>
     </tr>
   </table>
