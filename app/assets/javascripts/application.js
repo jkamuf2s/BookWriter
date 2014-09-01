@@ -16,18 +16,14 @@
 //= require ckeditor/init
 //= require_tree .
 
-$('#booksearch_is_published').click(function() {
-    if ($(this).is(':checked')) {
-        $('#booksearch_publishdate_from').enable();
-        $('#booksearch_publishdate_to').enable();
-    } else {
-        $('#booksearch_publishdate_from').disable();
-        $('#booksearch_publishdate_to').disable();
-    }
-
-    $.ajax({
-        type: "GET",
-        url: "/tasks/complete",
-        data: { id: $(this).data('post-id'), checked: checked }
+$(function () {
+    $('#booksearch_is_published').change(function () {
+        if ($(this).is(':checked')) {
+            $('#booksearch_publishdate_from').enable();
+            $('#booksearch_publishdate_to').enable();
+        } else {
+            $('#booksearch_publishdate_from').disable();
+            $('#booksearch_publishdate_to').disable();
+        }
     });
 });

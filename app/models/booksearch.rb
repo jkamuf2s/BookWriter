@@ -32,7 +32,7 @@ class Booksearch
   end
 
   def is_for_published_books?
-    @is_public == '1'
+    @is_published == '1'
   end
 
   private

@@ -1,4 +1,6 @@
-<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' }, remote: true do |f| %>
+<%= javascript_include_tag('books.js') %>
+
+<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' } do |f| %>
   <%= f.hidden_field :is_advanced, :value => '1' %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
@@ -14,16 +16,11 @@
         <%= f.label :is_published %>
       </td>
       <td>
-        <%= f.check_box :is_published %>
+        <%= f.check_box :is_published, data: {published: true}, :checked => @booksearch.is_for_published_books? %>
         <%= f.label :is_public, 'not only my books' %>
-        <%= f.check_box :is_public %>
+        <%= f.check_box :is_public, data: {publicsearch: true}, :checked => @booksearch.is_public? %>
       </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
+      <td></td><td></td>
     </tr>
     <tr>
       <td>
@@ -33,11 +30,11 @@
         <%= f.collection_select :genre, Book.select('distinct genre'), :genre, :genre, {:selected => @booksearch.genre, :include_blank => true} %>
       </td>
       <td>
-        <%= f.label :publishdate_to, 'between'%>
+        <%= f.label :publishdate_from, 'between'%>
       </td>
       <td>
         <% syear =  @booksearch.publishdate_from.to_i||2014 %>
-        <%= select_year(syear, :start_year => 2010, :end_year => Time.now.year, :field_name => "publishdate_to", :prefix => "booksearch") %>
+        <%= select_year(syear, :start_year => 2010, :end_year => Time.now.year, :field_name => "publishdate_from", :prefix => "booksearch", :disabled => !@booksearch.is_for_published_books?) %>
       </td>
     </tr>
     <tr>
@@ -45,14 +42,14 @@
         <%= f.label :author %><br />
       </td>
       <td>
-        <%= f.text_field :author %>
+        <%= f.text_field :author, :disabled => !@booksearch.is_public?%>
       </td>
       <td>
-        <%= f.label :publishdate_from, 'and' %>
+        <%= f.label :publishdate_to, 'and' %>
       </td>
       <td>
         <% syear =  @booksearch.publishdate_to.to_i||2010 %>
-        <%= select_year(syear, :start_year => Time.now.year, :end_year => 2010, :field_name => "publishdate_from", :prefix => "booksearch") %>
+        <%= select_year(syear, :start_year => Time.now.year, :end_year => 2010, :field_name => "publishdate_to", :prefix => "booksearch", :disabled => !@booksearch.is_for_published_books?) %>
       </td>
     </tr>
   </table>
