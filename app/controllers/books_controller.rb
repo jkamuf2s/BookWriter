@@ -22,7 +22,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by_id(params[:id].to_i)
 
     respond_to do |format|
       format.html { render_check_template }
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
   end
 
   def print
-    @book = Book.find(params[:id])
+    @book = Book.find_by_id(params[:id].to_i)
 
     respond_to do |format|
       format.pdf do
@@ -54,7 +54,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by_id(params[:id].to_i)
 
     unless @book.closed?
       render_check_template
@@ -98,7 +98,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
-    @book = Book.find(params[:id])
+    @book = Book.find_by_id(params[:id].to_i)
 
     if params[:update_chunk_order_only] == 'true'
       chunk_ids = params[:chunk_order].split(',')
@@ -140,7 +140,7 @@ class BooksController < ApplicationController
   end
 
   def new_edition
-    old_book = Book.find(params[:id])
+    old_book = Book.find_by_id(params[:id])
     @book = Book.new(old_book.sliced_attributes)
     @book.users = old_book.users
 
@@ -151,7 +151,7 @@ class BooksController < ApplicationController
 # DELETE /books/1
 # DELETE /books/1.json
   def destroy
-    @book = Book.find(params[:id])
+    @book = Book.find_by_id(params[:id].to_i)
     @book.destroy
 
     respond_to do |format|

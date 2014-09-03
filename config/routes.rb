@@ -32,7 +32,7 @@ BookWriter::Application.routes.draw do
   end
 
   # Required, because some forms, which are working with conversations claim it
-  get 'conversations/:id' => "conversations#show", :as => :mailboxer_conversation # generates  mailboxer_conversation_path
+  get 'conversations/:id' => "conversations#show", :as => :mailboxer_conversation, :constraints => {:id => /\d+/ } # generates  mailboxer_conversation_path
   post '/conversations/:id/reply' => "conversations#reply", :as => :reply_mailboxer_conversation # generates  reply_mailboxer_conversation_path
 
   # The priority is based upon order of creation:
