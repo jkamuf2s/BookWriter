@@ -15,15 +15,3 @@
 //= require jstree
 //= require ckeditor/init
 //= require_tree .
-
-$(function () {
-    $('#booksearch_is_published').change(function () {
-        if ($(this).is(':checked')) {
-            $('#booksearch_publishdate_from').enable();
-            $('#booksearch_publishdate_to').enable();
-        } else {
-            $('#booksearch_publishdate_from').disable();
-            $('#booksearch_publishdate_to').disable();
-        }
-    });
-});
