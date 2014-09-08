@@ -12,7 +12,6 @@ class Book < ActiveRecord::Base
 
 
   validates :edition, :uniqueness => {:scope => :title}
-  validate :at_least_one_user_ids_selected
   before_destroy :destroy_chunks
 
   def sliced_attributes
@@ -47,14 +46,6 @@ class Book < ActiveRecord::Base
   def destroy_chunks
     chunks.each do |chunk|
       chunk.destroy
-    end
-  end
-
-
-  #TODOJK add german error message and highlight the checkboxes and email fields
-  def at_least_one_user_ids_selected
-    if self.user_ids.blank?
-      self.errors.add(:user_ids, "no_autor_selectet")
     end
   end
 
