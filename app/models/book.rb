@@ -6,6 +6,11 @@ class Book < ActiveRecord::Base
   has_many :chunks
 
   validates_presence_of :title, :edition
+
+  # custom error message for the author checkboxes displays the translation defined in C:\RubyOnRailsProject\BookWriter\config\locales\*.yml
+  validates_presence_of :users, :message => I18n.t('errors.messages.no_autor_selectet')
+
+
   validates :edition, :uniqueness => {:scope => :title}
   validate :at_least_one_user_ids_selected
   before_destroy :destroy_chunks
