@@ -1,0 +1,10 @@
+# ruby encoding: utf-8
+
+en:
+  views:
+    layout:
+      home: Home
+      account: Account
+      my_account: My account
+      my_data: My data
+      logout: Logout

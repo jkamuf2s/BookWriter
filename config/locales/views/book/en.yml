@@ -1,0 +1,31 @@
+# ruby encoding: utf-8
+
+en:
+  views:
+    show: Show
+    edit: Edit
+    destroy: Delete
+    are_you_sure: Are you sure?
+    back: Back
+    edit: Edit
+    book:
+      export:
+        pdf: export to pdf
+        published_on: published on
+      close:
+        close_book: Finish
+        sure: Are you sure? Finished Book can not be edited anymore!
+      new_edition: New Edition
+      index:
+        title: List of Book
+        new: New Book
+      edit:
+        title: Edit Book
+      new:
+        title: New Book
+      flash_messages:
+        book_was_successfully_created: 'Book successfully created.'
+        book_was_successfully_updated: 'Book successfully updated.'
+        book_was_successfully_closed: 'The Book is now finished.'
+      flash_errors:
+        book_is_closed: 'The book is already closed and therefore can not be edited. Please create a new edition!'
