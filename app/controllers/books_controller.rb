@@ -16,6 +16,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
+      format.js #index.js.erb
     end
   end
 

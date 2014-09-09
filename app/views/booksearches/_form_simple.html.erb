@@ -1,4 +1,4 @@
-<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' } do |f| %>
+<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' }, :remote=> true do |f| %>
     <%= f.hidden_field :is_advanced, :value => '0' %> <!-- it's a simple Form -->
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.label :title %>

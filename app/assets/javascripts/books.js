@@ -1,4 +1,13 @@
 $(document).ready(function(){
+
+    //create Ajax request for Links
+    $("#books th a, #books .pagination a").on("click",function(){   // EventHandler- creation 1. Param (Which event?) 2. Param (Which function to execute? (http://api.jquery.com/on/)
+        $.getScript(this.href);                                     // Load a JavaScript file from the server using a GET HTTP request, then execute it.
+        return false
+    });
+
+
+    // publish checkbox 
     $('[data-published]').click(function(){
         // when checked
         if($(this).prop('checked')){

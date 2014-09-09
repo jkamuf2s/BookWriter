@@ -1,6 +1,6 @@
 <%= javascript_include_tag('books.js') %>
 
-<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' } do |f| %>
+<%= form_for @booksearch, :url => { :action => "index", :controller => 'books' },:html => { :method => 'GET' }, :remote=>true do |f| %>
   <%= f.hidden_field :is_advanced, :value => '1' %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
 

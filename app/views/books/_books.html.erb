@@ -1,0 +1,23 @@
+<table class="pretty">
+  <tr>
+    <th><%= sortable "title", Book.human_attribute_name(:title) %></th>
+    <th><%= sortable "edition", Book.human_attribute_name(:edition) %></th>
+    <th><%= sortable "published", Book.human_attribute_name(:published) %></th>
+    <th><%= sortable "genre", Book.human_attribute_name(:genre) %></th>
+    <th><%= Book.human_attribute_name(:tags) %></th>
+    <th><%= Book.human_attribute_name(:users) %></th>
+  </tr>
+
+  <% @books.each do |book| %>
+      <tr>
+        <td><%= book.is_author?(current_user) ? link_to(book.title, book) : book.title %></td>
+        <td><%= book.edition %></td>
+        <td><%= book.published %></td>
+        <td><%= book.genre %></td>
+        <td><%= book.tags %></td>
+        <td><%= book.users_list %></td>
+      </tr>
+  <% end %>
+</table>
+<%= will_paginate @books %>
+<script>$('.pagination a').attr('data-remote', 'true');</script>
