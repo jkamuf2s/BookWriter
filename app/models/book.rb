@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
   validates_presence_of :title, :edition
 
   # custom error message for the author checkboxes displays the translation defined in C:\RubyOnRailsProject\BookWriter\config\locales\*.yml
-  validates_presence_of :users, :message => I18n.t('errors.messages.no_autor_selectet')
+  validates_presence_of :users, :message => I18n.t('errors.messages.must_be_selected')
 
 
   validates :edition, :uniqueness => {:scope => :title}
