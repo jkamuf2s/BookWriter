@@ -1,7 +1,7 @@
 <h1><%= t 'views.book.index.title' %></h1>
 <!-- simple or extended search  -->
-<%= link_to 'Simple Search', show_simple_searchform_path, :remote=> true %>
-<%= link_to 'Advanced Search', show_advanced_searchform_path, :remote=> true %>
+<%= link_to 'Simple Search', show_simple_searchform_path, :remote=> true, :id=> "simplesearch", :style=>'font-weight: bold;' %>
+<%= link_to 'Advanced Search', show_advanced_searchform_path, :remote=> true, :id=>"advancedsearch" %>
 <br>
 <div id="searchform">
   <%= render 'booksearches/form_simple' unless @booksearch.is_advanced? %>

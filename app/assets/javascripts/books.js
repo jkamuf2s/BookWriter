@@ -7,7 +7,7 @@ $(document).ready(function(){
     });
 
 
-    // publish checkbox 
+    // publish checkbox
     $('[data-published]').click(function(){
         // when checked
         if($(this).prop('checked')){
