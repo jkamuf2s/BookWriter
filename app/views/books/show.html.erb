@@ -59,6 +59,7 @@
             <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
             <% unless @book.closed? %>
                 <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
+                <td><%= button_to "Versions", chunk_version_path(@book, chunk), method: :get %> </td>
             <% end %>
           </tr>
       <% end %>

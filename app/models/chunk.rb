@@ -8,8 +8,8 @@ class Chunk < ActiveRecord::Base
 
   attr_accessible :title, :section, :content, :user_id, :book_id, :position, :original_updated_at
 
-  belongs_to :user
-  belongs_to :book
+  belongs_to :user # creates the column user_id
+  belongs_to :book # creates the column book_id
 
   before_validation { self.position ||= book.max_chunk_position + 1 }
 

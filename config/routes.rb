@@ -23,6 +23,7 @@ BookWriter::Application.routes.draw do
   get 'show_simple_searchform' => 'books#show_simple_searchform' # for javascript
   get 'show_advanced_searchform' => 'books#show_advanced_searchform' # for javascript
 
+
   # Routes for Mailboxer
   resources :conversations, only: [:index, :show, :new, :create] do
     member do
@@ -30,6 +31,7 @@ BookWriter::Application.routes.draw do
       post :trash
     end
   end
+  get 'chunk_version/:book_id/:id' => 'chunks#version', :as => :chunk_version
 
   # Required, because some forms, which are working with conversations claim it
   get 'conversations/:id' => "conversations#show", :as => :mailboxer_conversation, :constraints => {:id => /\d+/ } # generates  mailboxer_conversation_path

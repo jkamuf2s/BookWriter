@@ -39,6 +39,11 @@ class ChunksController < ApplicationController
     render_check_template
   end
 
+  def version
+    @chunk = Chunk.find(params[:id])
+    render_check_template
+  end
+
   def create
     @chunk = Chunk.new(params[:chunk])
     @chunk.book = @book

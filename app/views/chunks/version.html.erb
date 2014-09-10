@@ -1,0 +1,33 @@
+<h2>Versions of: <%= @chunk.title %></h2>
+<table>
+
+  <tr>
+    <th>Date Of Change</th>
+    <th>Responsible User</th>
+    <th>Action</th>
+    <th>Content of Change ( Content before => Content after )</th>
+  </tr>
+
+  <% @chunk.versions.each do |version| %>
+      <tr>
+
+        <td>
+          <%= l(version.created_at, format: "%-d.%m.%Y %H:%M:%S %Z") %>
+        </td>
+
+        <td>
+          <%= User.find_by_id(version.whodunnit).username %>
+        </td>
+
+        <td>
+          <%= version.event %>
+        </td>
+
+        <td>
+          <pre><%= version.changeset %></pre>
+        </td>
+
+      </tr>
+  <% end %>
+
+</table>
