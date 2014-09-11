@@ -1,6 +1,6 @@
 <%= simple_form_for :message, url: [:reply, @conversation] do |f| %>
     <%= f.input :subject, :input_html => { :value => "RE: #{@conversation.subject}"} %>
-    <%= f.input :body %>
+    <%= f.input :body, as: :text %>
     <div class="form-actions">
       <%= f.button :submit, class: 'btn-primary' %>
       <%= submit_tag 'Reset', type: :reset, class: 'btn btn-danger' %>
