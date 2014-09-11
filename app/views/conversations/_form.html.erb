@@ -1,9 +1,18 @@
 <%= simple_form_for :conversation, url: :conversations do |f| %>
-    <%= f.input :recipients %>
-    <%= f.input :subject %>
-    <%= f.input :body, as: :text %>
+    <p>
+      <%= f.label "Recipient" %><br/>
+      <%= f.text_field :recipients %>
+    </p>
+    <p>
+      <%= f.label "Subject" %><br/>
+      <%= f.text_field :subject %>
+    </p>
+    <p>
+      <%= f.label "Message" %><br/>
+      <%= f.text_area :body %>
+    </p>
     <div class="form-actions">
-      <%= f.button :submit, class: 'btn-primary' %>
+      <%= f.button :submit, 'Send Message', class: 'btn-primary' %>
       <%= submit_tag 'Cancel', type: :reset, class: 'btn btn-danger' %>
     </div>
 <% end %>
