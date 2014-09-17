@@ -1,8 +1,12 @@
-class Book < ActiveRecord::Base
+class Book < ActiveRecord::Base #SQL Code nur in ActiveBookRecord Trennung von Technik (SQL) und
+# ActiveRecord::Base ist die Oberklasse aller Model- Klassen
+
 
   attr_accessible :title, :edition, :published, :genre, :abstract, :tags, :user_ids, :closed
+ #attr_accessible specifies a white list of model attributes that can be set via mass-assignment
 
-  has_and_belongs_to_many :users
+
+  has_and_belongs_to_many :users # generiert Tabelle books_users
   has_many :chunks
 
   validates_presence_of :title, :edition
@@ -15,7 +19,7 @@ class Book < ActiveRecord::Base
   before_destroy :destroy_chunks
 
   def sliced_attributes
-    attributes.slice('title', 'genre', 'abstract', 'tags')
+    attributes.slice('title', 'genre', 'abstract', 'tags') #Whitelisting
   end
 
   def published?

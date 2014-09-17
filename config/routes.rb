@@ -11,6 +11,14 @@ BookWriter::Application.routes.draw do
 
   #devise_for :users #default devise route without recaptcha
 
+  # new_user_session GET    /users/sign_in(.:format)                  devise/sessions#new
+  # user_session POST   /users/sign_in(.:format)                  devise/sessions#create
+  # destroy_user_session DELETE /users/sign_out(.:format)                 devise/sessions#destroy
+  # cancel_user_registration GET    /users/cancel(.:format)                   registrations#cancel
+  # user_registration POST   /users(.:format)                          registrations#create
+  #      new_user_registration GET    /users/sign_up(.:format)                  registrations#new
+  # edit_user_registration GET    /users/edit(.:format)                     registrations#edit
+
   devise_for :users, :controllers => {:registrations => "registrations"} # route to custom controller for recaptcha verification
 
   resources :books do

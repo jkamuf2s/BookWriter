@@ -1,15 +1,15 @@
-class BooksController < ApplicationController
+class BooksController < ApplicationController # Fachlogik SQL freie Zone
 
   layout 'books_and_chunks'
-  before_filter :authenticate_user!
-  before_filter :find_all_users, :only => [:new, :edit, :new_edition]
+  before_filter :authenticate_user! # bevor eine action im controller aufgerufen werden kann muss man mit devise sich authentifizieren
+  before_filter :find_all_users, :only => [:new, :edit, :new_edition] #for the methods :new, :edit, :new_edition @users = User.all insert DRY / Metaprogramming
   helper_method :sort_column, :sort_direction, :search_is_for_published
 
 
 
   # GET /books
   # GET /books.json
-  def index
+  def index # als root Seite gewählt kann nur angewählt werden, wenn man mit devise eingeloggt ist
     @booksearch = booksearch
     @books = @booksearch.search.order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page]); #searchresults.order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page]);
 
@@ -23,7 +23,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @book = Book.find_by_id(params[:id].to_i)
+    @book = Book.find_by_id(params[:id].to_i) # wenn bei Paraams id
 
     respond_to do |format|
       format.html { render_check_template }
@@ -60,7 +60,7 @@ class BooksController < ApplicationController
     unless @book.closed?
       render_check_template
     else
-      flash[:error] = I18n.t('views.book.flash_errors.book_is_closed')
+      flash[:error] = I18n.t('views.book.flash_errors.book_is_closed') # gibt ein flash Fenster mit der fehlermeldung aus
       render_check_template 'show'
     end
   end
